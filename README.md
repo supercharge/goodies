@@ -40,7 +40,7 @@ npm i @supercharge/goodies
 
 
 ## Docs
-Find all the [details for `@supercharge/goodies` in the extensive Supercharge docs](https://superchargejs.com/docsgoodies).
+Find all the [details for `@supercharge/goodies` in the extensive Supercharge docs](https://superchargejs.com/docs/goodies).
 
 
 ## Usage
