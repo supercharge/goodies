@@ -1,21 +1,15 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "target": "es2018",
     "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "target": "es2018",
     "lib": [
       "es2018"
     ],
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": false,
-    "moduleResolution": "node",
-    // "rootDir": ".",
-    "outDir": "./dist",
-    "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "strict": true
+    "removeComments": false
   },
   "include": [
     "./**/*"
