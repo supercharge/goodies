@@ -4,12 +4,12 @@
     "node": true
   },
   "extends": [
-    "standard"
-  ],
-  "plugins": [
-    "standard"
+    "standard-with-typescript"
   ],
   "parserOptions": {
-    "ecmaVersion": 2018
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/strict-boolean-expressions": 0
   }
 }

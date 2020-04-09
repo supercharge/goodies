@@ -10,18 +10,22 @@
   "devDependencies": {
     "@hapi/code": "~7.0.0",
     "@hapi/lab": "~21.0.0",
+    "@types/node": "~13.11.0",
+    "@typescript-eslint/eslint-plugin": "~2.26.0",
     "eslint": "~6.8.0",
-    "eslint-config-standard": "~14.1.0",
-    "eslint-plugin-import": "~2.20.0",
+    "eslint-config-standard-with-typescript": "~15.0.1",
+    "eslint-plugin-import": "~2.20.2",
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-promise": "~4.2.1",
-    "eslint-plugin-standard": "~4.0.1"
+    "eslint-plugin-standard": "~4.0.1",
+    "typescript": "~3.8.3"
   },
   "engines": {
     "node": ">=8"
   },
   "files": [
-    "src"
+    "dist/src",
+    "index.js"
   ],
   "homepage": "https://github.com/supercharge/goodies",
   "keywords": [
@@ -33,7 +37,7 @@
     "nodejs"
   ],
   "license": "MIT",
-  "main": "./src/goodies.js",
+  "main": "dist",
   "publishConfig": {
     "access": "public"
   },
@@ -41,11 +45,14 @@
     "type": "git",
     "url": "git+https://github.com/supercharge/goodies.git"
   },
+  "types": "dist",
   "scripts": {
-    "lint": "eslint .",
+    "build": "tsc",
+    "lint": "eslint src --ext .js,.ts",
     "lint:fix": "eslint . --fix",
     "list:tests": "lab --assert @hapi/code --dry --verbose",
-    "test": "lab --assert @hapi/code --leaks --coverage --lint --reporter console --output stdout --reporter html --output ./coverage/coverage.html",
-    "test:single": "lab --assert @hapi/code --leaks --lint --id"
+    "test": "npm run lint && lab --assert @hapi/code --leaks --coverage --reporter console --output stdout --reporter html --output ./coverage/coverage.html",
+    "test:single": "lab --assert @hapi/code --leaks --id",
+    "test:types": "tsc"
   }
 }
