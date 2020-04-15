@@ -19,7 +19,7 @@ import { Goodies } from './goodies'
  * })
  */
 export async function tap (value: any, callback?: Function): Promise<any> {
-  return await new Goodies().tap(value, callback)
+  return new Goodies().tap(value, callback)
 }
 
 /**
@@ -33,7 +33,7 @@ export async function tap (value: any, callback?: Function): Promise<any> {
  * @returns {*} value
  */
 export async function upon (value: any, callback?: Function): Promise<any> {
-  return await new Goodies().upon(value, callback)
+  return new Goodies().upon(value, callback)
 }
 
 /**

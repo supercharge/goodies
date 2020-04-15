@@ -10,6 +10,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "@typescript-eslint/return-await": 0,
     "@typescript-eslint/strict-boolean-expressions": 0
   }
 }
