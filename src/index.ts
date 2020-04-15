@@ -13,7 +13,7 @@ import { Goodies } from './goodies'
  * @returns {*} value
  *
  * @example
- * await tap(new User({ name: 'Supercharge' }), async user => {
+ * const user = await tap(new User({ name: 'Supercharge' }), async user => {
  *   await user.save()
  *   await user.subscribeToNewsletter()
  * })
@@ -33,7 +33,7 @@ export async function tap (value: any, callback?: Function): Promise<any> {
  * @returns {*} value
  *
  * @example
- * await upon(User.findById(1), async user => {
+ * const email = await upon(User.findById(1), async user => {
  *   return user.email
  * })
  */
