@@ -31,6 +31,11 @@ export async function tap (value: any, callback?: Function): Promise<any> {
  * @param {Function} callback
  *
  * @returns {*} value
+ *
+ * @example
+ * await upon(User.findById(1), async user => {
+ *   return user.email
+ * })
  */
 export async function upon (value: any, callback?: Function): Promise<any> {
   return new Goodies().upon(value, callback)
