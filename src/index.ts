@@ -1,6 +1,56 @@
-import { isPromise, tap } from './goodies'
+'use strict'
 
-export {
-  isPromise,
-  tap
+import { Goodies } from './goodies'
+
+/**
+ * Calls the given `callback` function with the given `value`
+ * and returns `value`. It resolves the `value` before
+ * passing it to the callback in case it is a Promise.
+ *
+ * @param {*} value
+ * @param {Function} callback
+ *
+ * @returns {*} value
+ *
+ * @example
+ * await tap(new User({ name: 'Supercharge' }), async user => {
+ *   await user.save()
+ *   await user.subscribeToNewsletter()
+ * })
+ */
+export async function tap (value: any, callback?: Function): Promise<any> {
+  return await new Goodies().tap(value, callback)
 }
+
+/**
+ * Calls the given `callback` function with the given `value` and returns
+ * the result of the callback. It resolves the `value` before passing
+ * it to the callback in case it is a Promise.
+ *
+ * @param {*} value
+ * @param {Function} callback
+ *
+ * @returns {*} value
+ */
+export async function upon (value: any, callback?: Function): Promise<any> {
+  return await new Goodies().upon(value, callback)
+}
+
+/**
+ * Determine whether the given `promise` is a Promise.
+ *
+ * @param {*} promise
+ *
+ * @returns {Boolean}
+ *
+ * @example
+ * isPromise('no') // false
+ * isPromise(new Promise(() => {})) // true
+ */
+export function isPromise (promise?: any): Boolean {
+  return new Goodies().isPromise(promise)
+}
+
+// export function isEmpty (value: any): Boolean {
+//   return new Goodies().isEmpty(value)
+// }
