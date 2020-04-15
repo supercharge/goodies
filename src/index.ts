@@ -50,7 +50,3 @@ export async function upon (value: any, callback?: Function): Promise<any> {
 export function isPromise (promise?: any): Boolean {
   return new Goodies().isPromise(promise)
 }
-
-// export function isEmpty (value: any): Boolean {
-//   return new Goodies().isEmpty(value)
-// }
