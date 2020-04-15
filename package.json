@@ -24,17 +24,18 @@
     "node": ">=8"
   },
   "files": [
-    "dist/src",
+    "dist",
     "index.js"
   ],
   "homepage": "https://github.com/supercharge/goodies",
   "keywords": [
-    "supercharge",
-    "superchargejs",
-    "function",
-    "helpers",
+    "nodejs",
+    "utilities",
     "goodies",
-    "nodejs"
+    "helper",
+    "function",
+    "supercharge",
+    "superchargejs"
   ],
   "license": "MIT",
   "main": "dist",
@@ -45,7 +46,6 @@
     "type": "git",
     "url": "git+https://github.com/supercharge/goodies.git"
   },
-  "types": "dist",
   "scripts": {
     "build": "tsc",
     "lint": "eslint src --ext .js,.ts",
@@ -54,5 +54,6 @@
     "test": "npm run build && npm run lint && npm run test:run",
     "test:run": "lab --transform node_modules/lab-transform-typescript --assert @hapi/code --leaks --coverage --reporter console --output stdout --reporter html --output ./coverage/coverage.html",
     "test:single": "lab --transform node_modules/lab-transform-typescript --assert @hapi/code --leaks --lint --id"
-  }
+  },
+  "types": "dist"
 }
