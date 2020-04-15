@@ -42,15 +42,15 @@ describe('Goodies', () => {
     expect(await upon(1, async () => { })).to.be.undefined()
 
     expect(
-      await upon(new User('Marcus'), user => {
-        return user.name
+      await upon(new User('Marcus'), (user: User) => {
+        return user.getName()
       })
     ).to.equal('Marcus')
 
     // resolves a promise before passing it down to the callback
     expect(
-      await upon(Promise.resolve(new User('Marcus')), user => {
-        return user.name
+      await upon(Promise.resolve(new User('Marcus')), (user: User) => {
+        return user.getName()
       })
     ).to.equal('Marcus')
   })

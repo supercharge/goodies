@@ -11,7 +11,7 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  async tap (value: any, callback?: Function): Promise<any> {
+  async tap (value: any, callback: Function|any): Promise<any> {
     if (this.isPromise(value)) {
       value = await value
     }
@@ -33,7 +33,7 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  async upon (value: any, callback?: Function): Promise<any> {
+  async upon (value: any, callback: Function|any): Promise<any> {
     if (this.isPromise(value)) {
       value = await value
     }
