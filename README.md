@@ -13,8 +13,8 @@
   <br/>
   <p>
     <a href="#installation"><strong>Installation</strong></a> ·
-    <a href="#Docs"><strong>Docs</strong></a> ·
-    <a href="#usage"><strong>Usage</strong></a>
+    <a href="#docs"><strong>Docs</strong></a> ·
+    <a href="#api"><strong>API</strong></a>
   </p>
   <br/>
   <br/>
@@ -43,8 +43,12 @@ npm i @supercharge/goodies
 Find all the [details for `@supercharge/goodies` in the extensive Supercharge docs](https://superchargejs.com/docs/goodies).
 
 
-## Usage
+## API
 Using `@supercharge/goodies` is pretty straightforward. The package exports a handful of methods that you can reach for when requiring the package:
+
+
+#### tap(value, callback)
+Returns the `value` after running the `callback`. The callback receives the value as an argument.
 
 ```js
 const { tap } = require('@supercharge/goodies')
@@ -54,6 +58,20 @@ return tap(await User.find(1), async (user) => {
 })
 
 // returns the user with ID 1
+```
+
+
+#### upon(value, callback)
+Returns the result of the callback. The callback receives the value as an argument.
+
+```js
+const { upon } = require('@supercharge/goodies')
+
+return upon(await User.find(1), async (user) => {
+  return user.email
+})
+
+// user@email.com
 ```
 
 
