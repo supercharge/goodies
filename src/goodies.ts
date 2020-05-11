@@ -64,4 +64,15 @@ export class Goodies {
   isFunction (input: any): Boolean {
     return typeof input === 'function'
   }
+
+  /**
+   * Determine whether the given `func` is an async function.
+   *
+   * @param {*} input
+   *
+   * @returns {Boolean}
+   */
+  isAsyncFunction (input: any): Boolean {
+    return this.isFunction(input) && input.constructor.name === 'AsyncFunction'
+  }
 }

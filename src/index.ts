@@ -1,6 +1,6 @@
 'use strict'
 
-import { Goodies } from './goodies'
+import { Goodies as Goodie } from './goodies'
 
 /**
  * Calls the given `callback` function with the given `value`
@@ -19,7 +19,7 @@ import { Goodies } from './goodies'
  * })
  */
 export async function tap (value: any, callback?: Function): Promise<any> {
-  return new Goodies().tap(value, callback)
+  return new Goodie().tap(value, callback)
 }
 
 /**
@@ -38,7 +38,7 @@ export async function tap (value: any, callback?: Function): Promise<any> {
  * })
  */
 export async function upon (value: any, callback?: Function): Promise<any> {
-  return new Goodies().upon(value, callback)
+  return new Goodie().upon(value, callback)
 }
 
 /**
@@ -53,5 +53,16 @@ export async function upon (value: any, callback?: Function): Promise<any> {
  * isPromise(new Promise(() => {})) // true
  */
 export function isPromise (promise?: any): Boolean {
-  return new Goodies().isPromise(promise)
+  return new Goodie().isPromise(promise)
+}
+
+/**
+ * Determine whether the given `input` is an async function.
+ *
+ * @param {*} input
+ *
+ * @returns {Boolean}
+ */
+export function isAsyncFunction (input: any): Boolean {
+  return new Goodie().isAsyncFunction(input)
 }
