@@ -2,16 +2,54 @@
 
 export class Goodies {
   /**
-   * Calls the given `callback` function with the given `value`
-   * and returns `value`. It resolves the `value` before
-   * passing it to the callback in case it is a Promise.
+   * Handles the tap call and delegates it either to an async tap
+   * handler or to a sync tap handler.
    *
    * @param {*} value
    * @param {Function} callback
    *
    * @returns {*} value
    */
-  async tap (value: any, callback: Function|any): Promise<any> {
+  tap (value: any, callback: Function|any): any|Promise<any> {
+    if (this.isPromise(value)) {
+      return this.tapAsync(value, callback)
+    }
+
+    if (this.isAsyncFunction(callback)) {
+      return this.tapAsync(value, callback)
+    }
+
+    return this.tapSync(value, callback)
+  }
+
+  /**
+   * Calls the given `callback` function with the
+   * given `value` and returns `value`.
+   *
+   * @param {*} value
+   * @param {Function} callback
+   *
+   * @returns {*} value
+   */
+  tapSync (value: any, callback: Function|any): any {
+    if (this.isFunction(callback)) {
+      callback(value)
+    }
+
+    return value
+  }
+
+  /**
+  * Calls the given `callback` function with the given `value`
+  * and returns `value`. It resolves the `value` before
+  * passing it to the callback in case it is a Promise.
+   *
+   * @param {*} value
+   * @param {Function} callback
+   *
+   * @returns {*} value
+   */
+  async tapAsync (value: any, callback: Function|any): Promise<any> {
     if (this.isPromise(value)) {
       value = await value
     }
@@ -33,7 +71,45 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  async upon (value: any, callback: Function|any): Promise<any> {
+  upon (value: any, callback: Function|any): any|Promise<any> {
+    if (this.isPromise(value)) {
+      return this.uponAsync(value, callback)
+    }
+
+    if (this.isAsyncFunction(callback)) {
+      return this.uponAsync(value, callback)
+    }
+
+    return this.uponSync(value, callback)
+  }
+
+  /**
+   * Calls the given `callback` function with the given `value` and returns
+   * the result of the callback.
+   *
+   * @param {*} value
+   * @param {Function} callback
+   *
+   * @returns {*} value
+   */
+  uponSync (value: any, callback: Function|any): any {
+    return this.isFunction(callback)
+      ? callback(value)
+      : value
+  }
+
+  /**
+   * Calls the given `callback` function with the given `value` and returns
+   * the result of the callback. It resolves the `value` before passing
+   * it to the callback in case it is a Promise.
+   *
+   * @param {*} value
+   * @param {Function} callback
+   *
+   * @returns {*} value
+   */
+
+  async uponAsync (value: any, callback: Function|any): Promise<any> {
     if (this.isPromise(value)) {
       value = await value
     }

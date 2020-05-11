@@ -33,21 +33,36 @@ describe('Goodies', () => {
         user.setName('Goodie')
       })
     ).to.equal({ name: 'Goodie' })
+
+    expect(
+      await tap([1, 2, 3], async () => {
+        await Promise.resolve()
+      })
+    ).to.equal([1, 2, 3])
+
+    expect(
+      await tap(Promise.resolve([1, 2, 3]))
+    ).to.equal([1, 2, 3])
   })
 
   it('upon', async () => {
-    expect(await upon(1)).to.equal(1)
+    // upon async
     expect(await upon(1, async () => { })).to.be.undefined()
-
-    expect(
-      await upon(new User('Marcus'), (user) => {
-        return user.getName()
-      })
-    ).to.equal('Marcus')
 
     // resolves a promise before passing it down to the callback
     expect(
       await upon(Promise.resolve(new User('Marcus')), (user) => {
+        return user.getName()
+      })
+    ).to.equal('Marcus')
+    expect(
+      await upon(Promise.resolve(new User('Marcus')))
+    ).to.equal(new User('Marcus'))
+
+    // upon sync
+    expect(upon(1)).to.equal(1)
+    expect(
+      upon(new User('Marcus'), (user) => {
         return user.getName()
       })
     ).to.equal('Marcus')
