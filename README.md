@@ -20,6 +20,7 @@
   <br/>
   <p>
     <a href="https://www.npmjs.com/package/@supercharge/goodies"><img src="https://img.shields.io/npm/v/@supercharge/goodies.svg" alt="Latest Version"></a>
+    <a href="https://www.npmjs.com/package/@supercharge/goodies"><img src="https://img.shields.io/npm/dm/@supercharge/goodies.svg" alt="Monthly downloads"></a>
   </p>
   <p>
     <em>Follow <a href="http://twitter.com/marcuspoehls">@marcuspoehls</a> and <a href="http://twitter.com/superchargejs">@superchargejs</a> for updates!</em>
