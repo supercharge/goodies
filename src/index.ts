@@ -18,7 +18,7 @@ import { Goodies as Goodie } from './goodies'
  *   await user.subscribeToNewsletter()
  * })
  */
-export function tap (value: any, callback?: Function): any|Promise<any> {
+export function tap (value: any, callback: Function): any|Promise<any> {
   return new Goodie().tap(value, callback)
 }
 
@@ -37,7 +37,7 @@ export function tap (value: any, callback?: Function): any|Promise<any> {
  *   return user.email
  * })
  */
-export function upon (value: any, callback?: Function): any|Promise<any> {
+export function upon (value: any, callback: Function): any|Promise<any> {
   return new Goodie().upon(value, callback)
 }
 
