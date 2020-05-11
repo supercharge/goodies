@@ -17,7 +17,6 @@
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-promise": "~4.2.1",
     "eslint-plugin-standard": "~4.0.1",
-    "lab-transform-typescript": "~3.0.1",
     "typescript": "~3.8.3"
   },
   "engines": {
@@ -52,8 +51,8 @@
     "lint:fix": "eslint . --fix",
     "list:tests": "lab --assert @hapi/code --dry --verbose",
     "test": "npm run build && npm run lint && npm run test:run",
-    "test:run": "lab --transform node_modules/lab-transform-typescript --assert @hapi/code --leaks --coverage --reporter console --output stdout --reporter html --output ./coverage/coverage.html",
-    "test:single": "lab --transform node_modules/lab-transform-typescript --assert @hapi/code --leaks --lint --id"
+    "test:run": "lab --assert @hapi/code --leaks --coverage --reporter console --output stdout --reporter html --output ./coverage/coverage.html",
+    "test:single": "lab --assert @hapi/code --leaks --lint --id"
   },
   "types": "dist"
 }

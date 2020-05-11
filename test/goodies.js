@@ -1,37 +1,35 @@
 'use strict'
 
-import * as Lab from '@hapi/lab'
-import { expect } from '@hapi/code'
-import { tap, upon, isPromise } from '../src'
+const Lab = require('@hapi/lab')
+const { expect } = require('@hapi/code')
+const { tap, upon, isPromise, isAsyncFunction } = require('..')
 
-const lab = Lab.script()
-const { describe, it } = lab
-export { lab }
+const { describe, it } = exports.lab = Lab.script()
 
 describe('Goodies', () => {
   it('tap', async () => {
     expect(await tap(1)).to.equal(1)
     expect(
-      await tap(new User('Marcus'), (user: User) => {
+      await tap(new User('Marcus'), (user) => {
         user.setName('Goodie')
       })
     ).to.equal({ name: 'Goodie' })
 
     expect(
-      await tap([1, 2, 3], (items: any[]) => {
+      await tap([1, 2, 3], (items) => {
         items.map(item => item * 2)
       })
     ).to.equal([1, 2, 3])
 
     expect(
-      await tap(await Promise.resolve([1, 2, 3]), (items: any[]) => {
+      await tap(await Promise.resolve([1, 2, 3]), (items) => {
         items.sort((a, b) => b - a)
       })
     ).to.equal([3, 2, 1])
 
     // resolves a promise before passing it down to the callback
     expect(
-      await tap(Promise.resolve(new User('Marcus')), (user: User) => {
+      await tap(Promise.resolve(new User('Marcus')), (user) => {
         user.setName('Goodie')
       })
     ).to.equal({ name: 'Goodie' })
@@ -42,14 +40,14 @@ describe('Goodies', () => {
     expect(await upon(1, async () => { })).to.be.undefined()
 
     expect(
-      await upon(new User('Marcus'), (user: User) => {
+      await upon(new User('Marcus'), (user) => {
         return user.getName()
       })
     ).to.equal('Marcus')
 
     // resolves a promise before passing it down to the callback
     expect(
-      await upon(Promise.resolve(new User('Marcus')), (user: User) => {
+      await upon(Promise.resolve(new User('Marcus')), (user) => {
         return user.getName()
       })
     ).to.equal('Marcus')
@@ -60,27 +58,36 @@ describe('Goodies', () => {
     expect(isPromise(1)).to.be.false()
     expect(isPromise('no')).to.be.false()
 
-    async function asyncFn (): Promise<void> {
+    async function asyncFn () {
       await new Promise(resolve => setTimeout(resolve, 1))
     }
 
     expect(isPromise(asyncFn())).to.be.true()
     expect(isPromise(new Promise(() => {}))).to.be.true()
   })
+
+  it('isAsyncFunction', () => {
+    expect(isAsyncFunction(1)).to.be.false()
+    expect(isAsyncFunction('no')).to.be.false()
+    expect(isAsyncFunction(null)).to.be.false()
+    expect(isAsyncFunction(undefined)).to.be.false()
+    expect(isAsyncFunction(function () { })).to.be.false()
+    expect(isAsyncFunction(new Promise(() => {}))).to.be.false()
+
+    expect(isAsyncFunction(async function () {})).to.be.true()
+  })
 })
 
 class User {
-  private name: string
-
-  constructor (name: string) {
+  constructor (name) {
     this.name = name
   }
 
-  getName (): string {
+  getName () {
     return this.name
   }
 
-  setName (name: string): void {
+  setName (name) {
     this.name = name
   }
 }
