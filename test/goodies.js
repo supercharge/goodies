@@ -8,30 +8,24 @@ const { describe, it } = exports.lab = Lab.script()
 
 describe('Goodies', () => {
   it('tap', async () => {
-    expect(await tap(1)).to.equal(1)
+    expect(tap(1)).to.equal(1)
     expect(
-      await tap(new User('Marcus'), (user) => {
-        user.setName('Goodie')
-      })
+      tap(new User('Marcus'), (user) => user.setName('Goodie'))
     ).to.equal({ name: 'Goodie' })
 
     expect(
-      await tap([1, 2, 3], (items) => {
-        items.map(item => item * 2)
-      })
+      tap([1, 2, 3], (items) => items.map(item => item * 2))
     ).to.equal([1, 2, 3])
 
     expect(
-      await tap(await Promise.resolve([1, 2, 3]), (items) => {
+      tap(await Promise.resolve([1, 2, 3]), (items) => {
         items.sort((a, b) => b - a)
       })
     ).to.equal([3, 2, 1])
 
     // resolves a promise before passing it down to the callback
     expect(
-      await tap(Promise.resolve(new User('Marcus')), (user) => {
-        user.setName('Goodie')
-      })
+      await tap(Promise.resolve(new User('Marcus')), (user) => user.setName('Goodie'))
     ).to.equal({ name: 'Goodie' })
 
     expect(
@@ -55,6 +49,7 @@ describe('Goodies', () => {
         return user.getName()
       })
     ).to.equal('Marcus')
+
     expect(
       await upon(Promise.resolve(new User('Marcus')))
     ).to.equal(new User('Marcus'))
