@@ -10,7 +10,7 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  tap (value: any, callback: Function|any): any|Promise<any> {
+  tap (value: any, callback: Function|any): Promise<any>|any {
     if (this.isPromise(value)) {
       return this.tapAsync(value, callback)
     }
@@ -71,7 +71,7 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  upon (value: any, callback: Function|any): any|Promise<any> {
+  upon (value: any, callback: Function|any): Promise<any>|any {
     if (this.isPromise(value)) {
       return this.uponAsync(value, callback)
     }
