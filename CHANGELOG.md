@@ -1,11 +1,18 @@
 # Changelog
 
 
+## [1.2.0](https://github.com/supercharge/goodies/compare/v1.1.0...v1.2.0) - 2020-05-xx
+
+### Added
+- `isAsyncFunction(input)` method: determine whether the given `input` is an async function
+
+
 ## [1.1.0](https://github.com/supercharge/goodies/compare/v1.0.0...v1.1.0) - 2020-04-15
 
 ### Added
 - `upon(value, callback)` method: `upon` calls the given `callback` function with the `value` and returns the result of the callback
 - `tap` the value when a promise as the first argument before passing it to the callback
+- `isPromise(input)` method: determine whether the given `input` is a promise
 
 ### Updated
 - move code base to TypeScript to ship this package with typings
