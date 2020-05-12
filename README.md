@@ -8,7 +8,7 @@
     <h3>Goodies</h3>
   </p>
   <p>
-    Async helper functions for Node.js.
+    Helper and utility functions for Node.js.
   </p>
   <br/>
   <p>
