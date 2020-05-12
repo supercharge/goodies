@@ -39,7 +39,7 @@
     "superchargejs"
   ],
   "license": "MIT",
-  "main": "dist",
+  "main": "index.js",
   "publishConfig": {
     "access": "public"
   },
