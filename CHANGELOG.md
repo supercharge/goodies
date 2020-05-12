@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [1.2.0](https://github.com/supercharge/goodies/compare/v1.1.0...v1.2.0) - 2020-05-11
+## [1.2.0](https://github.com/supercharge/goodies/compare/v1.1.0...v1.2.0) - 2020-05-12
 
 ### Added
 - `isAsyncFunction(input)` method determining whether the given `input` is an async function
