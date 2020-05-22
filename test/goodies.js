@@ -9,8 +9,11 @@ const { describe, it } = exports.lab = Lab.script()
 describe('Goodies', () => {
   it('tap', async () => {
     expect(tap(1)).to.equal(1)
+
     expect(
-      tap(new User('Marcus'), (user) => user.setName('Goodie'))
+      tap(new User('Marcus'), (user) => {
+        user.setName('Goodie')
+      })
     ).to.equal({ name: 'Goodie' })
 
     expect(
@@ -37,6 +40,14 @@ describe('Goodies', () => {
     expect(
       await tap(Promise.resolve([1, 2, 3]))
     ).to.equal([1, 2, 3])
+  })
+
+  it('tap - handles second non-function arguments', async () => {
+    expect(tap(1, new User())).to.equal(1)
+
+    expect(
+      await tap(Promise.resolve('Supercharge'), 1234)
+    ).to.equal('Supercharge')
   })
 
   it('upon', async () => {

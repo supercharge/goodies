@@ -1,6 +1,12 @@
 # Changelog
 
 
+## [1.3.0](https://github.com/supercharge/goodies/compare/v1.2.0...v1.3.0) - 2020-05-22
+
+### Added
+- typed `tap` function keeping the argument’s type as the return type
+
+
 ## [1.2.0](https://github.com/supercharge/goodies/compare/v1.1.0...v1.2.0) - 2020-05-12
 
 ### Added
