@@ -10,7 +10,7 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  tap<T> (value: T, callback?: (value: T) => any | Promise<any>): T|Promise<T> {
+  tap<T> (value: T, callback?: (value: T) => any): any {
     if (this.isPromise(value)) {
       return this.tapAsync(value, callback)
     }
@@ -79,7 +79,7 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  upon (value: any, callback: Function): Promise<any>|any {
+  upon<T> (value: any, callback?: (value: T) => any): any {
     if (this.isPromise(value)) {
       return this.uponAsync(value, callback)
     }
@@ -100,7 +100,11 @@ export class Goodies {
    *
    * @returns {*} value
    */
-  uponSync (value: any, callback: Function): any {
+  uponSync (value: any, callback?: Function): any {
+    if (!callback) {
+      return value
+    }
+
     return this.isFunction(callback)
       ? callback(value)
       : value
@@ -117,7 +121,11 @@ export class Goodies {
    * @returns {*} value
    */
 
-  async uponAsync (value: any, callback: Function): Promise<any> {
+  async uponAsync (value: any, callback?: Function): Promise<any> {
+    if (!callback) {
+      return value
+    }
+
     if (this.isPromise(value)) {
       value = await value
     }
