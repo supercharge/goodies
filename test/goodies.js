@@ -53,6 +53,7 @@ describe('Goodies', () => {
   it('upon', async () => {
     // upon async
     expect(await upon(1, async () => { })).to.be.undefined()
+    expect(await upon(Promise.resolve(1), new User())).to.equal(1)
 
     // resolves a promise before passing it down to the callback
     expect(
@@ -67,6 +68,8 @@ describe('Goodies', () => {
 
     // upon sync
     expect(upon(1)).to.equal(1)
+    expect(upon(1, new User())).to.equal(1)
+
     expect(
       upon(new User('Marcus'), (user) => {
         return user.getName()
