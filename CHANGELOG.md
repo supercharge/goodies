@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [1.5.0](https://github.com/supercharge/goodies/compare/v1.4.0...v1.5.0) - 2020-07-xx
+## [1.5.0](https://github.com/supercharge/goodies/compare/v1.4.0...v1.5.0) - 2020-07-21
 
 ### Added
 - `ifNullish(predicate, callback)` method running the `callback` function if the given `predicate` is `undefined` or `null`
