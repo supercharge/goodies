@@ -1,6 +1,16 @@
 # Changelog
 
 
+## [1.5.0](https://github.com/supercharge/goodies/compare/v1.4.0...v1.5.0) - 2020-07-xx
+
+### Added
+- `ifNullish(predicate, callback)` method running the `callback` function if the given `predicate` is `undefined` or `null`
+
+### Updated
+- bump dependencies
+- improved type definitions on `upon` for returned values allowing IntelliSense to kick in
+
+
 ## [1.4.0](https://github.com/supercharge/goodies/compare/v1.3.0...v1.4.0) - 2020-05-23
 
 ### Added
