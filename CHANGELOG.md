@@ -1,6 +1,12 @@
 # Changelog
 
 
+## [1.5.1](https://github.com/supercharge/goodies/compare/v1.5.0...v1.5.1) - 2020-07-21
+
+### Fixed
+- fixed the GitHub Action workflow to successfully publish the package in the GitHub Package Registry
+
+
 ## [1.5.0](https://github.com/supercharge/goodies/compare/v1.4.0...v1.5.0) - 2020-07-21
 
 ### Added
