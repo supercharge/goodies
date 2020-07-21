@@ -42,12 +42,12 @@ export function tap<T> (value: T, callback?: (value: T) => any): T {
  *   return user.email
  * })
  */
-export function upon<T> (value: Promise<T>, callback?: (value: T) => Promise<any>): Promise<any>
-export function upon<T> (value: Promise<T>, callback?: (value: T) => any): Promise<any>
-export function upon<T> (value: T, callback?: (value: T) => Promise<any>): Promise<any>
-export function upon<T> (value: T, callback?: (value: T) => any): any
+export function upon<T, R> (value: Promise<T>, callback?: (value: T) => Promise<any>): Promise<R>
+export function upon<T, R> (value: Promise<T>, callback?: (value: T) => R): Promise<R>
+export function upon<T, R> (value: T, callback?: (value: T) => Promise<R>): Promise<R>
+export function upon<T, R> (value: T, callback?: (value: T) => R): R
 
-export function upon<T> (value: T, callback?: (value: T) => any): any {
+export function upon<T, R> (value: T, callback?: (value: T) => R): R {
   return new Goodie().upon(value, callback)
 }
 
