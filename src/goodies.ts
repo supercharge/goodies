@@ -167,4 +167,18 @@ export class Goodies {
   isAsyncFunction (input: any): Boolean {
     return this.isFunction(input) && input.constructor.name === 'AsyncFunction'
   }
+
+  /**
+   * Runs the given `callback` if the `predicate` is `null` or `undefined`.
+   *
+   * @param {Boolean} predicate
+   * @param {Function} callback
+   *
+   * @returns {*}
+   */
+  ifNullish<R>(predicate: boolean, callback: () => R | Promise<R>): undefined | R | Promise<R> {
+    if (predicate === null || predicate === undefined) {
+      return callback()
+    }
+  }
 }

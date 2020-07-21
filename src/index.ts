@@ -76,3 +76,17 @@ export function isPromise (promise?: any): Boolean {
 export function isAsyncFunction (input: any): Boolean {
   return new Goodie().isAsyncFunction(input)
 }
+
+/**
+ * Runs the given `callback` if the `predicate` is `null` or `undefined`.
+ *
+ * @param {Boolean} predicate
+ * @param {Function} callback
+ *
+ * @returns {*}
+ */
+export function ifNullish<R> (input: boolean, callback: () => Promise<R>): undefined | Promise<R>
+
+export function ifNullish<R> (input: boolean, callback: () => R): undefined | R | Promise<R> {
+  return new Goodie().ifNullish<R>(input, callback)
+}

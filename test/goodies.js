@@ -2,7 +2,7 @@
 
 const Lab = require('@hapi/lab')
 const { expect } = require('@hapi/code')
-const { tap, upon, isPromise, isAsyncFunction } = require('..')
+const { tap, upon, isPromise, isAsyncFunction, ifNullish } = require('..')
 
 const { describe, it } = exports.lab = Lab.script()
 
@@ -99,6 +99,38 @@ describe('Goodies', () => {
     expect(isAsyncFunction(new Promise(() => {}))).to.be.false()
 
     expect(isAsyncFunction(async function () {})).to.be.true()
+  })
+
+  it('ifNullish', async () => {
+    expect(
+      ifNullish(null, () => {
+        return 'is-null'
+      })
+    ).to.equal('is-null')
+
+    expect(
+      ifNullish(undefined, () => {
+        return 'is-undefined'
+      })
+    ).to.equal('is-undefined')
+
+    expect(
+      ifNullish(0, () => {
+        return 'zero'
+      })
+    ).to.be.undefined()
+
+    expect(
+      ifNullish('', () => {
+        return 'empty-string'
+      })
+    ).to.be.undefined()
+
+    expect(
+      await ifNullish(null, async () => {
+        return 'Promise'
+      })
+    ).to.equal('Promise')
   })
 })
 
