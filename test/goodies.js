@@ -1,6 +1,6 @@
 'use strict'
 
-const { tap, upon, isPromise, isAsyncFunction, ifNullish } = require('..')
+const { tap, upon, isPromise, isAsyncFunction, ifNullish } = require('../dist')
 
 describe('Goodies', () => {
   it('tap', async () => {
