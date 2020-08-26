@@ -1,6 +1,15 @@
 # Changelog
 
 
+## [1.6.0](https://github.com/supercharge/streams/compare/v1.5.1...v1.6.0) - 2020-08-xx
+
+### Updated
+- bump dependencies
+- change `main` entrypoint in `package.json` to `dist` folder
+- move test runner from `@hapi/lab` to `jest`
+- move assertions from `@hapi/code` to `jest`
+
+
 ## [1.5.1](https://github.com/supercharge/goodies/compare/v1.5.0...v1.5.1) - 2020-07-21
 
 ### Fixed
