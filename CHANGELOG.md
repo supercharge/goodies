@@ -1,7 +1,11 @@
 # Changelog
 
 
-## [1.6.0](https://github.com/supercharge/streams/compare/v1.5.1...v1.6.0) - 2020-08-xx
+## [1.6.0](https://github.com/supercharge/streams/compare/v1.5.1...v1.6.0) - 2020-12-10
+
+### Added
+- `isFunction(input)` method determines whether the given `input` is a function
+- `esmResolve(input)` method returns the resolved export of `input` from ESM and CommonJS
 
 ### Updated
 - bump dependencies
