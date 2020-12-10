@@ -1,6 +1,6 @@
 'use strict'
 
-const { tap, upon, isPromise, isAsyncFunction, ifNullish } = require('../dist')
+const { tap, upon, isPromise, isFunction, isAsyncFunction, ifNullish, esmResolve } = require('../dist')
 
 describe('Goodies', () => {
   it('tap', async () => {
@@ -97,6 +97,18 @@ describe('Goodies', () => {
     expect(isAsyncFunction(async function () {})).toBe(true)
   })
 
+  it('isFunction', () => {
+    expect(isFunction(1)).toBe(false)
+    expect(isFunction('no')).toBe(false)
+    expect(isFunction(null)).toBe(false)
+    expect(isFunction(undefined)).toBe(false)
+    expect(isFunction(new Promise(() => {}))).toBe(false)
+
+    expect(isFunction(() => { })).toBe(true)
+    expect(isFunction(function () { })).toBe(true)
+    expect(isFunction(async function () {})).toBe(true)
+  })
+
   it('ifNullish', async () => {
     expect(
       ifNullish(null, () => {
@@ -127,6 +139,15 @@ describe('Goodies', () => {
         return 'Promise'
       })
     ).toEqual('Promise')
+  })
+
+  it('esmResolve', async () => {
+    expect(esmResolve()).toEqual(undefined)
+    expect(esmResolve(null)).toEqual(null)
+    expect(esmResolve(undefined)).toEqual(undefined)
+
+    expect(esmResolve({ name: 'Marcus ' })).toEqual({ name: 'Marcus ' })
+    expect(esmResolve({ default: { name: 'Marcus ' } })).toEqual({ name: 'Marcus ' })
   })
 })
 
