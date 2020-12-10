@@ -21,8 +21,6 @@ import { Goodies as Goodie } from './goodies'
 export function tap<T> (value: Promise<T>, callback?: (value: T) => Promise<any>): Promise<T>
 export function tap<T> (value: Promise<T>, callback?: (value: T) => any): Promise<T>
 export function tap<T> (value: T, callback?: (value: T) => Promise<any>): Promise<T>
-export function tap<T> (value: T, callback?: (value: T) => any): T
-
 export function tap<T> (value: T, callback?: (value: T) => any): T {
   return new Goodie().tap(value, callback)
 }
@@ -45,10 +43,24 @@ export function tap<T> (value: T, callback?: (value: T) => any): T {
 export function upon<T, R> (value: Promise<T>, callback?: (value: T) => Promise<any>): Promise<R>
 export function upon<T, R> (value: Promise<T>, callback?: (value: T) => R): Promise<R>
 export function upon<T, R> (value: T, callback?: (value: T) => Promise<R>): Promise<R>
-export function upon<T, R> (value: T, callback?: (value: T) => R): R
-
 export function upon<T, R> (value: T, callback?: (value: T) => R): R {
   return new Goodie().upon(value, callback)
+}
+
+/**
+ * Determine whether the given `input` is a function.
+ *
+ * @param {*} input
+ *
+ * @returns {Boolean}
+ *
+ * @example
+ * isFunction('no') // false
+ * isFunction(() => {}) // true
+ * isFunction(function () {}) // true
+ */
+export function isFunction (input?: any): Boolean {
+  return new Goodie().isFunction(input)
 }
 
 /**
@@ -86,7 +98,17 @@ export function isAsyncFunction (input: any): Boolean {
  * @returns {*}
  */
 export function ifNullish<R> (input: boolean, callback: () => Promise<R>): undefined | Promise<R>
-
 export function ifNullish<R> (input: boolean, callback: () => R): undefined | R | Promise<R> {
   return new Goodie().ifNullish<R>(input, callback)
+}
+
+/**
+ * Returns the resolved ESM default exports and CommonJS (module) exports.
+ *
+ * @param {*} input
+ *
+ * @returns {*}
+ */
+export function esmResolve (input: any): any {
+  return new Goodie().esmResolve(input)
 }
