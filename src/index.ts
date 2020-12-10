@@ -61,7 +61,7 @@ export function upon<T, R> (value: T, callback?: (value: T) => R): R {
  * isFunction(() => {}) // true
  * isFunction(function () {}) // true
  */
-export function isFunction (input?: any): Boolean {
+export function isFunction (input?: any): boolean {
   return new Goodie().isFunction(input)
 }
 
@@ -76,7 +76,7 @@ export function isFunction (input?: any): Boolean {
  * isPromise('no') // false
  * isPromise(new Promise(() => {})) // true
  */
-export function isPromise (promise?: any): Boolean {
+export function isPromise (promise?: any): boolean {
   return new Goodie().isPromise(promise)
 }
 
@@ -87,7 +87,7 @@ export function isPromise (promise?: any): Boolean {
  *
  * @returns {Boolean}
  */
-export function isAsyncFunction (input: any): Boolean {
+export function isAsyncFunction (input: any): boolean {
   return new Goodie().isAsyncFunction(input)
 }
 

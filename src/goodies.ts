@@ -142,7 +142,7 @@ export class Goodies {
    *
    * @returns {Boolean}
    */
-  isPromise (promise?: any): Boolean {
+  isPromise (promise?: any): boolean {
     return !!promise && this.isFunction(promise.then)
   }
 
@@ -153,7 +153,7 @@ export class Goodies {
    *
    * @returns {Boolean}
    */
-  isFunction (input: any): Boolean {
+  isFunction (input: any): boolean {
     return typeof input === 'function'
   }
 
@@ -164,7 +164,7 @@ export class Goodies {
    *
    * @returns {Boolean}
    */
-  isAsyncFunction (input: any): Boolean {
+  isAsyncFunction (input: any): boolean {
     return this.isFunction(input) && input.constructor.name === 'AsyncFunction'
   }
 
