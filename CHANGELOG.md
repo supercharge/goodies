@@ -1,6 +1,18 @@
 # Changelog
 
 
+## [1.6.2](https://github.com/supercharge/goodies/compare/v1.6.1...v1.6.2) - 2020-12-10
+
+### Fixed
+- fixed `Boolean` method return types to `boolean`
+
+
+## [1.6.1](https://github.com/supercharge/goodies/compare/v1.6.0...v1.6.1) - 2020-12-10
+
+### Fixed
+- fixed overloaded method typings for `tap` and `upon`
+
+
 ## [1.6.0](https://github.com/supercharge/streams/compare/v1.5.1...v1.6.0) - 2020-12-10
 
 ### Added
