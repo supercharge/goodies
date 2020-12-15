@@ -6,6 +6,9 @@
 ### Added
 - `isNullish(input)` method to determine whether the given `input` is `null` or `undefined`
 
+### Updated
+- bump dependencies
+
 
 ## [1.6.2](https://github.com/supercharge/goodies/compare/v1.6.1...v1.6.2) - 2020-12-10
 
