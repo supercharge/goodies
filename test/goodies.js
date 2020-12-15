@@ -1,6 +1,6 @@
 'use strict'
 
-const { tap, upon, isPromise, isFunction, isAsyncFunction, ifNullish, esmResolve } = require('../dist')
+const { tap, upon, isPromise, isFunction, isAsyncFunction, ifNullish, isNullish, esmResolve } = require('../dist')
 
 describe('Goodies', () => {
   it('tap', async () => {
@@ -139,6 +139,17 @@ describe('Goodies', () => {
         return 'Promise'
       })
     ).toEqual('Promise')
+  })
+
+  it('isNullish', () => {
+    expect(isNullish()).toBe(true)
+    expect(isNullish(null)).toBe(true)
+    expect(isNullish(undefined)).toBe(true)
+
+    expect(isNullish(0)).toBe(false)
+    expect(isNullish('')).toBe(false)
+    expect(isNullish('no')).toBe(false)
+    expect(isNullish(function () {})).toBe(false)
   })
 
   it('esmResolve', async () => {

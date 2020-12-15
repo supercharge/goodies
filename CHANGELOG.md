@@ -1,6 +1,12 @@
 # Changelog
 
 
+## [1.7.0](https://github.com/supercharge/streams/compare/v1.6.2...v1.7.0) - 2020-12-15
+
+### Added
+- `isNullish(input)` method to determine whether the given `input` is `null` or `undefined`
+
+
 ## [1.6.2](https://github.com/supercharge/goodies/compare/v1.6.1...v1.6.2) - 2020-12-10
 
 ### Fixed

@@ -177,9 +177,20 @@ export class Goodies {
    * @returns {*}
    */
   ifNullish<R>(predicate: boolean, callback: () => R | Promise<R>): undefined | R | Promise<R> {
-    if (predicate === null || predicate === undefined) {
+    if (this.isNullish(predicate)) {
       return callback()
     }
+  }
+
+  /**
+   * Determine whether the given `input` is `null` or `undefined`.
+   *
+   * @param {*} input
+   *
+   * @returns {Boolean}
+   */
+  isNullish (input: any): boolean {
+    return input === undefined || input === null
   }
 
   /**

@@ -105,6 +105,18 @@ export function ifNullish<R> (input: boolean, callback: () => R): undefined | R 
 }
 
 /**
+ * Runs the given `callback` if the `predicate` is `null` or `undefined`.
+ *
+ * @param {Boolean} predicate
+ * @param {Function} callback
+ *
+ * @returns {*}
+ */
+export function isNullish (input: any): boolean {
+  return new Goodie().isNullish(input)
+}
+
+/**
  * Returns the resolved ESM default exports and CommonJS (module) exports.
  *
  * @param {*} input
