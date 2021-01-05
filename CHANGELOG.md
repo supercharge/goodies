@@ -1,7 +1,16 @@
 # Changelog
 
 
-## [1.7.0](https://github.com/supercharge/streams/compare/v1.6.2...v1.7.0) - 2020-12-15
+## [1.8.0](https://github.com/supercharge/goodies/compare/v1.7.0...v1.8.0) - 2021-01-05
+
+### Added
+- `esmRequire(input)` method requires and returns the resolved export of `input` from ESM and CommonJS
+
+### Updated
+- bump dependencies
+
+
+## [1.7.0](https://github.com/supercharge/goodies/compare/v1.6.2...v1.7.0) - 2020-12-15
 
 ### Added
 - `isNullish(input)` method to determine whether the given `input` is `null` or `undefined`
@@ -22,7 +31,7 @@
 - fixed overloaded method typings for `tap` and `upon`
 
 
-## [1.6.0](https://github.com/supercharge/streams/compare/v1.5.1...v1.6.0) - 2020-12-10
+## [1.6.0](https://github.com/supercharge/goodies/compare/v1.5.1...v1.6.0) - 2020-12-10
 
 ### Added
 - `isFunction(input)` method determines whether the given `input` is a function
