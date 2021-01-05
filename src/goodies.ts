@@ -205,4 +205,15 @@ export class Goodies {
       ? input.default
       : input
   }
+
+  /**
+   * Returns the required and resolved ESM default exports and CommonJS (module) exports.
+   *
+   * @param {String} path
+   *
+   * @returns {*}
+   */
+  esmRequire (path: string): any {
+    return this.esmResolve(require(path))
+  }
 }
