@@ -1,6 +1,17 @@
 'use strict'
 
-const { tap, upon, isPromise, isFunction, isAsyncFunction, ifNullish, isNullish, esmResolve } = require('../dist')
+const Path = require('path')
+const {
+  tap,
+  upon,
+  isPromise,
+  isFunction,
+  isAsyncFunction,
+  ifNullish,
+  isNullish,
+  esmResolve,
+  esmRequire
+} = require('../dist')
 
 describe('Goodies', () => {
   it('tap', async () => {
@@ -159,6 +170,19 @@ describe('Goodies', () => {
 
     expect(esmResolve({ name: 'Marcus ' })).toEqual({ name: 'Marcus ' })
     expect(esmResolve({ default: { name: 'Marcus ' } })).toEqual({ name: 'Marcus ' })
+  })
+
+  it('esmRequire', async () => {
+    expect(
+      () => esmRequire(Path.resolve(__dirname, 'not-existent'))
+    ).toThrow('Cannot find module')
+
+    expect(
+      esmRequire(Path.resolve(__dirname, 'fixtures/esm-require'))
+    ).toEqual('Marcus')
+    expect(
+      esmRequire(Path.resolve(__dirname, 'fixtures/esm-require-default'))
+    ).toEqual('default Marcus')
   })
 })
 
