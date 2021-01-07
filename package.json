@@ -9,7 +9,7 @@
   "dependencies": {},
   "devDependencies": {
     "@supercharge/tsconfig": "~1.0.0",
-    "@types/jest": "~26.0.19",
+    "@types/jest": "~26.0.20",
     "@typescript-eslint/eslint-plugin": "~4.12.0",
     "eslint": "~7.17.0",
     "eslint-config-standard-with-typescript": "~19.0.1",
