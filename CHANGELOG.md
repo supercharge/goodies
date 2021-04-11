@@ -1,6 +1,15 @@
 # Changelog
 
 
+## [1.9.0](https://github.com/supercharge/goodies/compare/v1.8.0...v1.9.0) - 2021-04-11
+
+### Updated
+- bump dependencies
+- refactored the `Goodies` class to individual methods
+- this package now exports individual methods making the package tree-shakable and usable in bundled environments
+- move test runner from `jest` to `AVA` (avoiding globals and using explicit methods instead)
+
+
 ## [1.8.0](https://github.com/supercharge/goodies/compare/v1.7.0...v1.8.0) - 2021-01-05
 
 ### Added
