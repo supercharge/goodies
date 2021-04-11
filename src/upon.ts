@@ -35,6 +35,14 @@ export function upon<T, R = T> (value: T, callback: (value: T) => R): any {
   return uponSync(value, callback)
 }
 
+/**
+ * Synchronous handling of `upon`.
+ *
+ * @param {*} value
+ * @param {Function} callback
+ *
+ * @returns {*}
+ */
 function uponSync (value: any, callback?: Function): any {
   if (!callback) {
     return value
@@ -45,6 +53,14 @@ function uponSync (value: any, callback?: Function): any {
     : value
 }
 
+/**
+ * Asynchronous handling of `upon`.
+ *
+ * @param {*} value
+ * @param {Function} callback
+ *
+ * @returns {*}
+ */
 async function uponAsync<T, R> (value: T, callback: Function): Promise<R> {
   if (isPromise(value)) {
     value = await value

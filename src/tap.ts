@@ -36,6 +36,14 @@ export function tap<T> (value: T, callback?: (value: T) => any): any {
   return tapSync(value, callback)
 }
 
+/**
+ * Synchronous handling of `tap`.
+ *
+ * @param {*} value
+ * @param {Function} callback
+ *
+ * @returns {*}
+ */
 function tapSync (value: any, callback?: Function): any {
   if (!callback) {
     return value
@@ -48,6 +56,14 @@ function tapSync (value: any, callback?: Function): any {
   return value
 }
 
+/**
+ * Asynchronous handling of `tap`.
+ *
+ * @param {*} value
+ * @param {Function} callback
+ *
+ * @returns {*}
+ */
 async function tapAsync<T> (value: T, callback?: (value: T) => any): Promise<any> {
   if (!callback) {
     return value
