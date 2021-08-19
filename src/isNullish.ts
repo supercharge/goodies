@@ -1,13 +1,12 @@
 'use strict'
 
 /**
- * Runs the given `callback` if the `predicate` is `null` or `undefined`.
+ * Determine whether the given `input` is `null` or `undefined`.
  *
- * @param {Boolean} predicate
- * @param {Function} callback
+ * @param {T} input
  *
- * @returns {*}
+ * @returns {Boolean}
  */
-export function isNullish (input: any): boolean {
-  return input === undefined || input === null
+export function isNullish<T> (input: T | undefined | null): input is null | undefined {
+  return input == null
 }
