@@ -1,6 +1,16 @@
 # Changelog
 
 
+## [1.10.0](https://github.com/supercharge/goodies/compare/v1.9.0...v1.10.0) - 2021-08-19
+
+### Added
+- `isNotNullish(input)` method determining whether the given `input` **is not** `null` or `undefined`
+
+### Updated
+- bump dependencies
+- refined types for `isNullish`, `isPromise`, `isFunction`
+
+
 ## [1.9.0](https://github.com/supercharge/goodies/compare/v1.8.0...v1.9.0) - 2021-04-11
 
 ### Updated
