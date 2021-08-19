@@ -107,9 +107,10 @@ test('isAsyncFunction', t => {
   t.is(isAsyncFunction('no'), false)
   t.is(isAsyncFunction(null), false)
   t.is(isAsyncFunction(undefined), false)
-  t.is(isAsyncFunction(function () { }), false)
+  t.is(isAsyncFunction(() => {}), false)
   t.is(isAsyncFunction(new Promise(() => {})), false)
 
+  t.is(isAsyncFunction(async () => {}), true)
   t.is(isAsyncFunction(async function () {}), true)
 })
 
