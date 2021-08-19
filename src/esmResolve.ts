@@ -5,9 +5,9 @@
  *
  * @param {*} input
  *
- * @returns {*}
+ * @returns {T}
  */
-export function esmResolve (input: any): any {
+export function esmResolve<T> (input: any): T {
   return input?.default
     ? input.default
     : input
