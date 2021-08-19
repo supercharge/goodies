@@ -4,7 +4,7 @@ const test = require('ava')
 const Path = require('path')
 const {
   tap, upon, isPromise, isFunction, isAsyncFunction,
-  ifNullish, isNullish, esmResolve, esmRequire
+  ifNullish, isNullish, isNotNullish, esmResolve, esmRequire
 } = require('../dist')
 
 test('tap', async t => {
@@ -170,7 +170,18 @@ test('isNullish', t => {
   t.is(isNullish(0), false)
   t.is(isNullish(''), false)
   t.is(isNullish('no'), false)
-  t.is(isNullish(function () {}), false)
+  t.is(isNullish(() => {}), false)
+})
+
+test('isNotNullish', t => {
+  t.is(isNotNullish(0), true)
+  t.is(isNotNullish(''), true)
+  t.is(isNotNullish('no'), true)
+  t.is(isNotNullish(() => {}), true)
+
+  t.is(isNotNullish(), false)
+  t.is(isNotNullish(null), false)
+  t.is(isNotNullish(undefined), false)
 })
 
 test('esmResolve', async t => {
