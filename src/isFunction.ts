@@ -9,9 +9,10 @@
  *
  * @example
  * isFunction('no') // false
+ *
  * isFunction(() => {}) // true
  * isFunction(function () {}) // true
  */
-export function isFunction (input?: any): boolean {
+export function isFunction (input: any): input is Function {
   return typeof input === 'function'
 }

@@ -5,7 +5,7 @@ import { isFunction } from './isFunction'
 /**
  * Determine whether the given `promise` is a Promise.
  *
- * @param {*} promise
+ * @param {T} promise
  *
  * @returns {Boolean}
  *
@@ -13,6 +13,6 @@ import { isFunction } from './isFunction'
  * isPromise('no') // false
  * isPromise(new Promise(() => {})) // true
  */
-export function isPromise (promise?: any): boolean {
+export function isPromise<T = any> (promise: any): promise is Promise<T> {
   return !!promise && isFunction(promise.then)
 }
