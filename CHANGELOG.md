@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [1.10.1](https://github.com/supercharge/goodies/compare/v1.10.0...v1.10.1) - 2022-04-04
+
+### Updated
+- bump dependencies
+- change main export in `package.json` to `dist/index.js`
+
+
 ## [1.10.0](https://github.com/supercharge/goodies/compare/v1.9.0...v1.10.0) - 2021-08-19
 
 ### Added
