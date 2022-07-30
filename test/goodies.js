@@ -1,214 +1,193 @@
 'use strict'
 
-const test = require('ava')
 const Path = require('path')
+const { expect } = require('expect')
+const { test } = require('@japa/runner')
 const {
   tap, upon, isPromise, isFunction, isAsyncFunction,
   ifNullish, isNullish, isNotNullish, esmResolve, esmRequire
 } = require('../dist')
 
-test('tap', async t => {
-  t.is(
-    tap(1), 1
-  )
+test.group('Goodies', () => {
+  test('tap', async () => {
+    expect(tap(1)).toEqual(1)
 
-  t.deepEqual(
-    tap(new User('Marcus'), (user) => {
-      user.setName('Goodie')
-    }),
-    new User('Goodie')
-  )
+    expect(
+      tap(new User('Marcus'), (user) => {
+        user.setName('Goodie')
+      })
+    ).toEqual(new User('Goodie'))
 
-  t.deepEqual(
-    tap([1, 2, 3], (items) => items.map(item => item * 2)),
-    [1, 2, 3]
-  )
+    expect(
+      tap([1, 2, 3], (items) => items.map(item => item * 2))
+    ).toEqual([1, 2, 3])
 
-  t.deepEqual(
-    tap(await Promise.resolve([1, 2, 3]), (items) => {
-      items.sort((a, b) => b - a)
-    }),
-    [3, 2, 1]
-  )
+    expect(
+      tap(await Promise.resolve([1, 2, 3]), (items) => {
+        items.sort((a, b) => b - a)
+      })).toEqual([3, 2, 1])
 
-  // resolves a promise before passing it down to the callback
-  t.deepEqual(
-    await tap(Promise.resolve(new User('Marcus')), (user) => user.setName('Goodie')),
-    new User('Goodie')
-  )
+    // resolves a promise before passing it down to the callback
+    expect(
+      await tap(Promise.resolve(new User('Marcus')), (user) => user.setName('Goodie'))
+    ).toEqual(new User('Goodie'))
 
-  t.deepEqual(
-    await tap([1, 2, 3], async () => {
-      await Promise.resolve()
-    }),
-    [1, 2, 3]
-  )
+    expect(
+      await tap([1, 2, 3], async () => {
+        await Promise.resolve()
+      })
+    ).toEqual([1, 2, 3])
 
-  t.deepEqual(
-    await tap(Promise.resolve([1, 2, 3])),
-    [1, 2, 3]
-  )
-})
+    expect(
+      await tap(Promise.resolve([1, 2, 3]))
+    ).toEqual([1, 2, 3])
+  })
 
-test('tap - handles second non-function arguments', async t => {
-  t.is(tap(1, new User()), 1)
+  test('tap - handles second non-function arguments', async () => {
+    expect(tap(1, new User())).toBe(1)
 
-  t.deepEqual(
-    await tap(Promise.resolve('Supercharge'), 1234),
-    'Supercharge'
-  )
-})
+    expect(
+      await tap(Promise.resolve('Supercharge'), 1234)
+    ).toEqual('Supercharge')
+  })
 
-test('upon', async t => {
+  test('upon', async () => {
   // upon async
-  t.deepEqual(await upon(1, async () => { }), undefined)
-  t.deepEqual(await upon(Promise.resolve(1), new User()), 1)
+    expect(await upon(1, async () => { })).toEqual(undefined)
+    expect(await upon(Promise.resolve(1), new User())).toEqual(1)
 
-  // resolves a promise before passing it down to the callback
-  t.deepEqual(
-    await upon(Promise.resolve(new User('Marcus')), (user) => {
-      return user.getName()
-    }),
-    'Marcus'
-  )
+    // resolves a promise before passing it down to the callback
+    expect(
+      await upon(Promise.resolve(new User('Marcus')), (user) => {
+        return user.getName()
+      })).toEqual('Marcus')
 
-  t.deepEqual(
-    await upon(Promise.resolve(new User('Marcus'))),
-    new User('Marcus')
-  )
+    expect(
+      await upon(Promise.resolve(new User('Marcus')))
+    ).toEqual(
+      new User('Marcus')
+    )
 
-  // upon sync
-  t.is(upon(1), 1)
-  t.is(upon(1, new User()), 1)
+    // upon sync
+    expect(upon(1)).toEqual(1)
+    expect(upon(1, new User())).toEqual(1)
 
-  t.deepEqual(
-    upon(new User('Marcus'), (user) => {
-      return user.getName()
-    }),
-    'Marcus'
-  )
-})
+    expect(
+      upon(new User('Marcus'), (user) => {
+        return user.getName()
+      })
+    ).toEqual('Marcus')
+  })
 
-test('isPromise', t => {
-  t.is(isPromise(), false)
-  t.is(isPromise(1), false)
-  t.is(isPromise('no'), false)
+  test('isPromise', () => {
+    expect(isPromise()).toEqual(false)
+    expect(isPromise(1)).toEqual(false)
+    expect(isPromise('no')).toEqual(false)
 
-  async function asyncFn () {
-    await new Promise(resolve => setTimeout(resolve, 1))
-  }
+    async function asyncFn () {
+      await new Promise(resolve => setTimeout(resolve, 1))
+    }
 
-  t.is(isPromise(asyncFn()), true)
-  t.is(isPromise(new Promise(() => {})), true)
-})
+    expect(isPromise(asyncFn())).toEqual(true)
+    expect(isPromise(new Promise(() => {}))).toEqual(true)
+  })
 
-test('isAsyncFunction', t => {
-  t.is(isAsyncFunction(1), false)
-  t.is(isAsyncFunction('no'), false)
-  t.is(isAsyncFunction(null), false)
-  t.is(isAsyncFunction(undefined), false)
-  t.is(isAsyncFunction(() => {}), false)
-  t.is(isAsyncFunction(new Promise(() => {})), false)
+  test('isAsyncFunction', () => {
+    expect(isAsyncFunction(1)).toEqual(false)
+    expect(isAsyncFunction('no')).toEqual(false)
+    expect(isAsyncFunction(null)).toEqual(false)
+    expect(isAsyncFunction(undefined)).toEqual(false)
+    expect(isAsyncFunction(() => {})).toEqual(false)
+    expect(isAsyncFunction(new Promise(() => {}))).toEqual(false)
 
-  t.is(isAsyncFunction(async () => {}), true)
-  t.is(isAsyncFunction(async function () {}), true)
-})
+    expect(isAsyncFunction(async () => {})).toEqual(true)
+    expect(isAsyncFunction(async function () {})).toEqual(true)
+  })
 
-test('isFunction', t => {
-  t.is(isFunction(1), false)
-  t.is(isFunction('no'), false)
-  t.is(isFunction(null), false)
-  t.is(isFunction(undefined), false)
-  t.is(isFunction(new Promise(() => {})), false)
+  test('isFunction', () => {
+    expect(isFunction(1)).toEqual(false)
+    expect(isFunction('no')).toEqual(false)
+    expect(isFunction(null)).toEqual(false)
+    expect(isFunction(undefined)).toEqual(false)
+    expect(isFunction(new Promise(() => {}))).toEqual(false)
 
-  t.is(isFunction(() => { }), true)
-  t.is(isFunction(function () { }), true)
-  t.is(isFunction(async function () {}), true)
-})
+    expect(isFunction(() => { })).toEqual(true)
+    expect(isFunction(function () { })).toEqual(true)
+    expect(isFunction(async function () {})).toEqual(true)
+  })
 
-test('ifNullish', async t => {
-  t.deepEqual(
-    ifNullish(null, () => {
-      return 'is-null'
-    }),
-    'is-null'
-  )
+  test('ifNullish', async () => {
+    expect(
+      ifNullish(null, () => {
+        return 'is-null'
+      })
+    ).toEqual('is-null')
 
-  t.deepEqual(
-    ifNullish(undefined, () => {
-      return 'is-undefined'
-    }),
-    'is-undefined'
-  )
+    expect(
+      ifNullish(undefined, () => {
+        return 'is-undefined'
+      })
+    ).toEqual('is-undefined')
 
-  t.deepEqual(
-    ifNullish(0, () => {
-      return 'zero'
-    }),
-    undefined
-  )
+    expect(
+      ifNullish(0, () => {
+        return 'zero'
+      })
+    ).toBeUndefined()
 
-  t.deepEqual(
-    ifNullish('', () => {
-      return 'empty-string'
-    }),
-    undefined
-  )
+    expect(
+      ifNullish('', () => {
+        return 'empty-string'
+      })
+    ).toBeUndefined()
 
-  t.deepEqual(
-    await ifNullish(null, async () => {
-      return 'Promise'
-    }),
-    'Promise'
-  )
-})
+    expect(
+      await ifNullish(null, async () => {
+        return 'Promise'
+      })
+    ).toEqual('Promise')
+  })
 
-test('isNullish', t => {
-  t.is(isNullish(), true)
-  t.is(isNullish(null), true)
-  t.is(isNullish(undefined), true)
+  test('isNullish', () => {
+    expect(isNullish()).toBe(true)
+    expect(isNullish(null)).toBe(true)
+    expect(isNullish(undefined)).toBe(true)
 
-  t.is(isNullish(0), false)
-  t.is(isNullish(''), false)
-  t.is(isNullish('no'), false)
-  t.is(isNullish(() => {}), false)
-})
+    expect(isNullish(0)).toBe(false)
+    expect(isNullish('')).toBe(false)
+    expect(isNullish('no')).toBe(false)
+    expect(isNullish(() => {})).toBe(false)
+  })
 
-test('isNotNullish', t => {
-  t.is(isNotNullish(0), true)
-  t.is(isNotNullish(''), true)
-  t.is(isNotNullish('no'), true)
-  t.is(isNotNullish(() => {}), true)
+  test('isNotNullish', () => {
+    expect(isNotNullish(0)).toBe(true)
+    expect(isNotNullish('')).toBe(true)
+    expect(isNotNullish('no')).toBe(true)
+    expect(isNotNullish(() => {})).toBe(true)
 
-  t.is(isNotNullish(), false)
-  t.is(isNotNullish(null), false)
-  t.is(isNotNullish(undefined), false)
-})
+    expect(isNotNullish()).toBe(false)
+    expect(isNotNullish(null)).toBe(false)
+    expect(isNotNullish(undefined)).toBe(false)
+  })
 
-test('esmResolve', async t => {
-  t.is(esmResolve(), undefined)
-  t.is(esmResolve(null), null)
-  t.is(esmResolve(undefined), undefined)
+  test('esmResolve', async () => {
+    expect(esmResolve()).toBe(undefined)
+    expect(esmResolve(null)).toBe(null)
+    expect(esmResolve(undefined)).toBe(undefined)
 
-  t.deepEqual(esmResolve({ name: 'Marcus ' }), { name: 'Marcus ' })
-  t.deepEqual(esmResolve({ default: { name: 'Marcus ' } }), { name: 'Marcus ' })
-})
+    expect(esmResolve({ name: 'Marcus ' })).toEqual({ name: 'Marcus ' })
+    expect(esmResolve({ default: { name: 'Marcus ' } })).toEqual({ name: 'Marcus ' })
+  })
 
-test('esmRequire', async t => {
-  // t.throws(() => {
-  //   return esmRequire(Path.resolve(__dirname, 'not-existent'))
-  // }, { message: 'Cannot find module' }
-  // )
+  test('esmRequire', async () => {
+    expect(
+      esmRequire(Path.resolve(__dirname, 'fixtures/esm-require'))
+    ).toEqual('Marcus')
 
-  t.is(
-    esmRequire(Path.resolve(__dirname, 'fixtures/esm-require')),
-    'Marcus'
-  )
-
-  t.is(
-    esmRequire(Path.resolve(__dirname, 'fixtures/esm-require-default')),
-    'default Marcus'
-  )
+    expect(
+      esmRequire(Path.resolve(__dirname, 'fixtures/esm-require-default'))
+    ).toEqual('default Marcus')
+  })
 })
 
 class User {
