@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [1.10.2](https://github.com/supercharge/goodies/compare/v1.10.1...v1.10.2) - 2022-08-xx
+
+### Updated
+- bump dependencies
+- move testing from AVA to Japa
+
+
 ## [1.10.1](https://github.com/supercharge/goodies/compare/v1.10.0...v1.10.1) - 2022-04-04
 
 ### Updated
