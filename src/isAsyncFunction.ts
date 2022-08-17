@@ -9,6 +9,6 @@ import { isFunction } from './isFunction'
  *
  * @returns {Boolean}
  */
-export function isAsyncFunction (input: any): boolean {
+export function isAsyncFunction (input: any): input is Promise<any> {
   return isFunction(input) && input.constructor.name === 'AsyncFunction'
 }

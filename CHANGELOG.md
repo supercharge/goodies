@@ -6,6 +6,7 @@
 ### Updated
 - bump dependencies
 - move testing from AVA to Japa
+- refine return type for `isAsyncFunction`
 
 
 ## [1.10.1](https://github.com/supercharge/goodies/compare/v1.10.0...v1.10.1) - 2022-04-04
