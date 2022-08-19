@@ -1,6 +1,15 @@
 # Changelog
 
 
+## [1.11.1](https://github.com/supercharge/goodies/compare/v1.11.0...v1.11.1) - 2022-08-19
+
+### Added
+- export `AsyncFunction` type
+
+### Fixed
+- fix return type of `isAsyncFunction`
+
+
 ## [1.11.0](https://github.com/supercharge/goodies/compare/v1.10.1...v1.11.0) - 2022-08-19
 
 ### Updated
