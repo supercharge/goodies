@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [1.10.2](https://github.com/supercharge/goodies/compare/v1.10.1...v1.10.2) - 2022-08-xx
+## [1.11.0](https://github.com/supercharge/goodies/compare/v1.10.1...v1.11.0) - 2022-08-19
 
 ### Updated
 - bump dependencies
