@@ -3,10 +3,6 @@
 /**
  * Determine whether the given `input` is a function.
  *
- * @param {*} input
- *
- * @returns {Boolean}
- *
  * @example
  * isFunction('no') // false
  *

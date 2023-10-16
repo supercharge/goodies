@@ -1,6 +1,24 @@
 # Changelog
 
 
+## [2.0.0](https://github.com/supercharge/goodies/compare/v1.11.0...v2.0.0) - 2022-10-xx
+
+### Added
+- `resolveDefaultImport` method: returns the resolved `default` export from module found at `filePath` without the wrapping `{ default: … }`
+
+### Removed
+- `esmRequire`: not needed anymore because this package moved to ESM and `esmRequire` used CommonJS. Use `resolveDefaultImport` instead
+- `esmResolve`: not needed anymore because this method is now part of `resolveDefaultImport`
+
+### Updated
+- bump dependencies
+- moving from Japa to the native Node.js test runner
+
+### Breaking changes
+- require Node.js v20 (or later)
+- moving this package from CommonJS to ESM
+
+
 ## [1.11.1](https://github.com/supercharge/goodies/compare/v1.11.0...v1.11.1) - 2022-08-19
 
 ### Added

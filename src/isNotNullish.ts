@@ -1,13 +1,9 @@
 'use strict'
 
-import { isNullish } from './isNullish'
+import { isNullish } from './isNullish.js'
 
 /**
  * Determine whether the given `input` is **not** `null` or `undefined`.
- *
- * @param {T} input
- *
- * @returns {Boolean}
  *
  * @example
  * isNotNullish() // false
