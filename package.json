@@ -6,6 +6,9 @@
   "bugs": {
     "url": "https://github.com/supercharge/goodies/issues"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "files": [
     "dist"
   ],
