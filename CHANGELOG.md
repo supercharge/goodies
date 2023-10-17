@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [2.0.0](https://github.com/supercharge/goodies/compare/v1.11.0...v2.0.0) - 2022-10-xx
+## [2.0.0](https://github.com/supercharge/goodies/compare/v1.11.0...v2.0.0) - 2022-10-17
 
 ### Added
 - `resolveDefaultImport` method: returns the resolved `default` export from module found at `filePath` without the wrapping `{ default: … }`
